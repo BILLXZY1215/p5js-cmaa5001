@@ -129,7 +129,7 @@ function Home() {
 
 function App() {
 	useEffect(() => {
-		axios.defaults.baseURL = 'https://localhost:8001/api/'
+		axios.defaults.baseURL = 'https://localhost:7001/'
 	}, [])
 	return (
 		<BrowserRouter>

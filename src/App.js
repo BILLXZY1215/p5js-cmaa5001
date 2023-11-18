@@ -47,11 +47,53 @@ const twoColors = { '0%': '#108ee9', '100%': '#87d068' }
 
 function Game() {
 	const location = useLocation()
-	const player = location.player
-	const [value, setValue] = useState(50)
+	const player = location.state.player
+	console.log(player)
+	// const [value, setValue] = useState(50)
 
-	const handleKiss = (id) => {
-		setValue((v) => (id == 1 ? v + 10 : v - 10))
+	const [timer, setTimer] = useState(false)
+
+	const [p1, setP1] = useState(0)
+	const [p2, setP2] = useState(0)
+
+	const [p1Win, setP1Win] = useState(0)
+	const [p2Win, setP2Win] = useState(0)
+
+	const length = 10
+
+	useEffect(() => {
+		async function getValue() {
+			await axios.get(`/value/1`).then((resp) => {
+				setP1(resp.data)
+			})
+			await axios.get(`/value/2`).then((resp) => {
+				setP2(resp.data)
+			})
+		}
+		setTimeout(() => {
+			getValue()
+			if (p1 == 10) {
+				setP1Win(1)
+			}
+			if (p2 == 10) {
+				setP2Win(1)
+			}
+			setTimer((v) => !v)
+		}, 1000)
+	}, [timer])
+
+	const handleKiss = async (id) => {
+		// setValue((v) => (id == 1 ? v + 10 : v - 10))
+		await axios
+			.post(`/value/${id}/${id == 1 ? p1 + 1 : p2 + 1}`)
+			.then(async (resp) => {
+				if (p1 + p2 >= 10) {
+					await axios.post(
+						`/value/${id == 1 ? 2 : 1}/${id == 1 ? p2 - 1 : p1 - 1}`
+					)
+				}
+			})
+		setTimer((v) => !v)
 	}
 
 	return (
@@ -60,19 +102,24 @@ function Game() {
 				<Header style={headerStyle}>Game</Header>
 				<Content style={contentStyle}>
 					<Row>
-						<Col span={12}>P1</Col>
-						<Col span={12}>P2</Col>
+						<Col span={12}>P1: {p1}</Col>
+						<Col span={12}>P2: {p2}</Col>
 					</Row>
 					<Row>
-						<Progress percent={value} status='active' strokeColor={twoColors} />
+						{/* <Progress percent={value} status='active' strokeColor={twoColors} /> */}
 					</Row>
 					<Row>
 						<Col span={24}>
-							<Button type='primary' onClick={handleKiss.bind(this, player)}>
+							<Button
+								type='primary'
+								onClick={handleKiss.bind(this, player)}
+								disabled={p1Win || p2Win}
+							>
 								Kiss!
 							</Button>
 						</Col>
 					</Row>
+					<Row>{p1Win ? 'P1 Win!' : p2Win ? 'P2 Win!' : ''}</Row>
 				</Content>
 				<Footer style={footerStyle}>Team14</Footer>
 			</Layout>
@@ -114,7 +161,7 @@ function Home() {
 							<Button
 								type='primary'
 								onClick={() => {
-									navigate('/game', { player: player })
+									navigate('/game', { state: { player: player } })
 								}}
 							>
 								Play!
@@ -129,7 +176,7 @@ function Home() {
 
 function App() {
 	useEffect(() => {
-		axios.defaults.baseURL = 'https://localhost:7001/'
+		axios.defaults.baseURL = 'http://127.0.0.1:7001/'
 	}, [])
 	return (
 		<BrowserRouter>

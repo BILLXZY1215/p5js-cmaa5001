@@ -19,6 +19,7 @@ module.exports = (appInfo) => {
 		csrf: {
 			enable: false,
 		},
+		domainWhiteList: ['http://localhost:3000'],
 	}
 
 	// add your middleware config here

@@ -11,9 +11,26 @@ module.exports = (appInfo) => {
 	 * @type {Egg.EggAppConfig}
 	 **/
 	const config = (exports = {})
+	const path = require('path')
+	config.cluster = {
+		https: {
+			key: path.join(appInfo.baseDir, 'config/key.pem'),
+			cert: path.join(appInfo.baseDir, 'config/cert.pem'),
+		},
+		// listen: {
+		// 	path: '',
+		// 	port: 7777,
+		// 	hostname: 'localhost',
+		// },
+	}
 
 	// use for cookie sign key, should change to your own and keep security
 	config.keys = appInfo.name + '_1700303598376_9520'
+
+	config.cors = {
+		credentials: true,
+		origin: (ctx) => ctx.get('origin'),
+	}
 
 	config.security = {
 		csrf: {

@@ -176,7 +176,7 @@ function Home() {
 
 function App() {
 	useEffect(() => {
-		axios.defaults.baseURL = 'http://127.0.0.1:7001/'
+		axios.defaults.baseURL = 'https://124.222.21.202:7777/'
 	}, [])
 	return (
 		<BrowserRouter>

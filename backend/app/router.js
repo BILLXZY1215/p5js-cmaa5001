@@ -10,4 +10,5 @@ module.exports = (app) => {
 	router.post('/postStatus/:status', controller.home.postStatus)
 	router.get('/value/:player', controller.home.getPlayerValue)
 	router.post('/value/:player/:value', controller.home.postPlayerValue)
+	router.post('/value/clear', controller.home.clearValue)
 }

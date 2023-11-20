@@ -35,6 +35,12 @@ class HomeController extends Controller {
 		ctx.status = 200
 		ctx.body = res
 	}
+	async clearValue() {
+		const { ctx, service } = this
+		const res = await service.home.clearValue()
+		ctx.status = 200
+		ctx.body = res
+	}
 }
 
 module.exports = HomeController

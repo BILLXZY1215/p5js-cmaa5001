@@ -39,5 +39,14 @@ class HomeService extends Service {
 		console.log(res)
 		return res.affectedRows === 1
 	}
+	async clearValue() {
+		const row = {
+			id: 1,
+			p1: 0,
+			p2: 0,
+		}
+		const res = await this.app.mysql.update('game', row)
+		return res.affectedRows === 1
+	}
 }
 module.exports = HomeService

@@ -95,6 +95,9 @@ function Game() {
 
 	const handleKiss = async (id) => {
 		// setValue((v) => (id == 1 ? v + 10 : v - 10))
+		if (p1Win || p2Win) {
+			return
+		}
 		await axios
 			.post(`/value/${id}/${id == 1 ? p1 + 1 : p2 + 1}`)
 			.then(async (resp) => {
@@ -127,78 +130,78 @@ function Game() {
 							{/* <Col span={12}> */}
 							{p1 <= 0 ? (
 								<Image
-									width={width * 0.05}
-									height={300}
+									// width={width * 0.05}
+									height={500}
 									src='./kisser1/1.png'
 									preview={false}
 								/>
 							) : p1 == 1 ? (
 								<Image
-									width={width * 0.1}
-									height={300}
+									// width={width * 0.1}
+									height={500}
 									src='./kisser1/1.png'
 									preview={false}
 								/>
 							) : p1 == 2 ? (
 								<Image
-									width={width * 0.2}
-									height={300}
+									// width={width * 0.2}
+									height={500}
 									src='./kisser1/2.png'
 									preview={false}
 								/>
 							) : p1 == 3 ? (
 								<Image
-									width={width * 0.3}
-									height={300}
+									// width={width * 0.3}
+									height={500}
 									src='./kisser1/3.png'
 									preview={false}
 								/>
 							) : p1 == 4 ? (
 								<Image
-									width={width * 0.4}
-									height={300}
+									// width={width * 0.4}
+									height={500}
 									src='./kisser1/4.png'
 									preview={false}
 								/>
 							) : p1 == 5 ? (
 								<Image
-									width={width * 0.5}
-									height={300}
+									// width={width * 0.5}
+									height={500}
 									src='./kisser1/5.png'
 									preview={false}
 								/>
 							) : p1 == 6 ? (
 								<Image
-									width={width * 0.6}
-									height={300}
+									// width={width * 0.6}
+									height={500}
 									src='./kisser1/6.png'
 									preview={false}
 								/>
 							) : p1 == 7 ? (
 								<Image
-									width={width * 0.7}
-									height={300}
+									// width={width * 0.7}
+									height={500}
 									src='./kisser1/7.png'
 									preview={false}
 								/>
 							) : p1 == 8 ? (
 								<Image
-									width={width * 0.8}
-									height={300}
+									// width={width * 0.8}
+									height={500}
 									src='./kisser1/8.png'
 									preview={false}
 								/>
 							) : p1 == 9 ? (
 								<Image
-									width={width * 0.9}
-									height={300}
+									// width={width * 0.9}
+									height={500}
 									src='./kisser1/9.png'
 									preview={false}
 								/>
 							) : (
 								<Image
-									width={width * 0.95}
-									height={300}
+									// width={width * 0.95}
+									height={500}
 									src='./kisser1/10.png'
 									preview={false}
 								/>
@@ -290,17 +293,22 @@ function Game() {
 					</Row>
 					<Row>
 						<Col span={24}>
-							<Button
+							<Image
+								preview={false}
+								src='./btn.png'
+								width={300}
+								onClick={handleKiss.bind(this, player)}
+							/>
+							{/* <Button
 								type='primary'
 								onClick={handleKiss.bind(this, player)}
 								disabled={p1Win || p2Win}
 							>
 								Kiss!
-							</Button>
+							</Button> */}
 						</Col>
 					</Row>
 					<Row>{p1Win ? 'P1 Win!' : p2Win ? 'P2 Win!' : ''}</Row>
-					
 				</Content>
 				<Footer style={footerStyle}>Team14</Footer>
 			</Layout>
@@ -330,13 +338,27 @@ function Home() {
 				) : (
 					<Content style={contentStyle}>
 						<Row>
-						<Col span={12} style={{ height: '50vh', marginTop:'5vh'}}>
-								<Image width={'50%'} onClick={() => {setPlayer(1)}} src="k1.png" preview={false}/>
-						</Col>
-						<Col span={12} style={{ height: '50vh'}}>
-						<Image  width={'50%'} onClick={() => {setPlayer(2)}}  src="k2.png" preview={false}/>
-						</Col>
-					</Row>
+							<Col span={12} style={{ height: '50vh', marginTop: '5vh' }}>
+								<Image
+									width={'50%'}
+									onClick={() => {
+										setPlayer(1)
+									}}
+									src='k1.png'
+									preview={false}
+								/>
+							</Col>
+							<Col span={12} style={{ height: '50vh' }}>
+								<Image
+									width={'50%'}
+									onClick={() => {
+										setPlayer(2)
+									}}
+									src='k2.png'
+									preview={false}
+								/>
+							</Col>
+						</Row>
 						<Row>
 							<Col span={24}>
 								<Button

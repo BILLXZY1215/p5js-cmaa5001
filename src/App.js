@@ -63,19 +63,29 @@ function Game() {
 
 	useEffect(() => {
 		async function getValue() {
-			await axios.get(`/value/1`).then((resp) => {
-				setP1(resp.data)
-			})
-			await axios.get(`/value/2`).then((resp) => {
-				setP2(resp.data)
-			})
+			await axios
+				.get(`/value/1`)
+				.then((resp) => {
+					setP1(resp.data)
+				})
+				.catch((e) => {
+					console.log(e)
+				})
+			await axios
+				.get(`/value/2`)
+				.then((resp) => {
+					setP2(resp.data)
+				})
+				.catch((e) => {
+					console.log(e)
+				})
 		}
 		setTimeout(() => {
 			getValue()
-			if (p1 == 10) {
+			if (p1 >= 10) {
 				setP1Win(1)
 			}
-			if (p2 == 10) {
+			if (p2 >= 10) {
 				setP2Win(1)
 			}
 			setTimer((v) => !v)
@@ -88,10 +98,15 @@ function Game() {
 			.post(`/value/${id}/${id == 1 ? p1 + 1 : p2 + 1}`)
 			.then(async (resp) => {
 				if (p1 + p2 >= 10) {
-					await axios.post(
-						`/value/${id == 1 ? 2 : 1}/${id == 1 ? p2 - 1 : p1 - 1}`
-					)
+					await axios
+						.post(`/value/${id == 1 ? 2 : 1}/${id == 1 ? p2 - 1 : p1 - 1}`)
+						.catch((e) => {
+							console.log(e)
+						})
 				}
+			})
+			.catch((e) => {
+				console.log(e)
 			})
 		setTimer((v) => !v)
 	}
@@ -107,6 +122,8 @@ function Game() {
 					</Row>
 					<Row>
 						{/* <Progress percent={value} status='active' strokeColor={twoColors} /> */}
+						<Col span={12}></Col>
+						<Col span={12}></Col>
 					</Row>
 					<Row>
 						<Col span={24}>

@@ -29,6 +29,8 @@ const contentStyle: React.CSSProperties = {
 	lineHeight: '120px',
 	color: '#fff',
 	backgroundColor: '#ff54e4',
+	backgroundImage: `url('./b.png')`,
+	backgroundSize: 'cover',
 }
 
 const siderStyle: React.CSSProperties = {
@@ -383,6 +385,28 @@ function Home() {
 									src='k2.png'
 									preview={false}
 								/>
+							</Col>
+						</Row>
+						<Row>
+							<Col span={12}>
+								<Button
+									type={player == 1 ? 'primary' : 'default'}
+									onClick={() => {
+										setPlayer(1)
+									}}
+								>
+									P1
+								</Button>
+							</Col>
+							<Col span={12}>
+								<Button
+									type={player == 2 ? 'primary' : 'default'}
+									onClick={() => {
+										setPlayer(2)
+									}}
+								>
+									P2
+								</Button>
 							</Col>
 						</Row>
 						<Row>

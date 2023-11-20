@@ -147,6 +147,12 @@ function Game() {
 function Home() {
 	const navigate = useNavigate()
 	const [player, setPlayer] = useState(1)
+	useEffect(() => {
+		async function clearValue() {
+			await axios.post('/value/clear').catch((e) => console.log(e))
+		}
+		clearValue()
+	}, [])
 	return (
 		<Space direction='vertical' style={{ width: '100%' }} size={[0, 48]}>
 			<Layout>

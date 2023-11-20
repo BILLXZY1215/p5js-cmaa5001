@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Layout, Space, Col, Row, Button, Progress, Image } from 'antd'
+import { Player, ControlBar, PlayToggle } from 'video-react'
 import {
 	BrowserRouter,
 	Routes,
@@ -115,6 +116,31 @@ function Game() {
 		setTimer((v) => !v)
 	}
 
+	if ((player == 1 && p1Win) || (player == 2 && p2Win)) {
+		return (
+			<Space direction='vertical' style={{ width: '100%' }} size={[0, 48]}>
+				<Layout>
+					<Header style={headerStyle}>Game</Header>
+					<Content style={contentStyle}>
+						<Player
+							autoPlay
+							// poster='/assets/poster.png'
+							src='./video.mp4'
+							fluid={false}
+							width={width}
+							height={height}
+						>
+							<ControlBar autoHide={false} disableDefaultControls={true}>
+								<PlayToggle />
+							</ControlBar>
+						</Player>
+					</Content>
+				</Layout>
+			</Space>
+		)
+	}
+
+	const h = height / 2.5
 	return (
 		<Space direction='vertical' style={{ width: '100%' }} size={[0, 48]}>
 			<Layout>
@@ -131,77 +157,77 @@ function Game() {
 							{p1 <= 0 ? (
 								<Image
 									// width={width * 0.05}
-									height={500}
+									height={h}
 									src='./kisser1/1.png'
 									preview={false}
 								/>
 							) : p1 == 1 ? (
 								<Image
 									// width={width * 0.1}
-									height={500}
+									height={h}
 									src='./kisser1/1.png'
 									preview={false}
 								/>
 							) : p1 == 2 ? (
 								<Image
 									// width={width * 0.2}
-									height={500}
+									height={h}
 									src='./kisser1/2.png'
 									preview={false}
 								/>
 							) : p1 == 3 ? (
 								<Image
 									// width={width * 0.3}
-									height={500}
+									height={h}
 									src='./kisser1/3.png'
 									preview={false}
 								/>
 							) : p1 == 4 ? (
 								<Image
 									// width={width * 0.4}
-									height={500}
+									height={h}
 									src='./kisser1/4.png'
 									preview={false}
 								/>
 							) : p1 == 5 ? (
 								<Image
 									// width={width * 0.5}
-									height={500}
+									height={h}
 									src='./kisser1/5.png'
 									preview={false}
 								/>
 							) : p1 == 6 ? (
 								<Image
 									// width={width * 0.6}
-									height={500}
+									height={h}
 									src='./kisser1/6.png'
 									preview={false}
 								/>
 							) : p1 == 7 ? (
 								<Image
 									// width={width * 0.7}
-									height={500}
+									height={h}
 									src='./kisser1/7.png'
 									preview={false}
 								/>
 							) : p1 == 8 ? (
 								<Image
 									// width={width * 0.8}
-									height={500}
+									height={h}
 									src='./kisser1/8.png'
 									preview={false}
 								/>
 							) : p1 == 9 ? (
 								<Image
 									// width={width * 0.9}
-									height={500}
+									height={h}
 									src='./kisser1/9.png'
 									preview={false}
 								/>
 							) : (
 								<Image
 									// width={width * 0.95}
-									height={500}
+									height={h}
 									src='./kisser1/10.png'
 									preview={false}
 								/>
@@ -212,78 +238,78 @@ function Game() {
 						<div>
 							{p2 <= 0 ? (
 								<Image
-									width={width * 0.05}
-									height={300}
+									// width={width * 0.05}
+									height={h}
 									src='./kisser2/1.png'
 									preview={false}
 								/>
 							) : p2 == 1 ? (
 								<Image
-									width={width * 0.1}
-									height={300}
+									// width={width * 0.1}
+									height={h}
 									src='./kisser2/1.png'
 									preview={false}
 								/>
 							) : p2 == 2 ? (
 								<Image
-									width={width * 0.2}
-									height={300}
+									// width={width * 0.2}
+									height={h}
 									src='./kisser2/2.png'
 									preview={false}
 								/>
 							) : p2 == 3 ? (
 								<Image
-									width={width * 0.3}
-									height={300}
+									// width={width * 0.3}
+									height={h}
 									src='./kisser2/3.png'
 									preview={false}
 								/>
 							) : p2 == 4 ? (
 								<Image
-									width={width * 0.4}
-									height={300}
+									// width={width * 0.4}
+									height={h}
 									src='./kisser2/4.png'
 									preview={false}
 								/>
 							) : p2 == 5 ? (
 								<Image
-									width={width * 0.5}
-									height={300}
+									// width={width * 0.5}
+									height={h}
 									src='./kisser2/5.png'
 									preview={false}
 								/>
 							) : p2 == 6 ? (
 								<Image
-									width={width * 0.6}
-									height={300}
+									// width={width * 0.6}
+									height={h}
 									src='./kisser2/6.png'
 									preview={false}
 								/>
 							) : p2 == 7 ? (
 								<Image
-									width={width * 0.7}
-									height={300}
+									// width={width * 0.7}
+									height={h}
 									src='./kisser2/7.png'
 									preview={false}
 								/>
 							) : p2 == 8 ? (
 								<Image
-									width={width * 0.8}
-									height={300}
+									// width={width * 0.8}
+									height={h}
 									src='./kisser2/8.png'
 									preview={false}
 								/>
 							) : p2 == 9 ? (
 								<Image
-									width={width * 0.9}
-									height={300}
+									// width={width * 0.9}
+									height={h}
 									src='./kisser2/9.png'
 									preview={false}
 								/>
 							) : (
 								<Image
-									width={width * 0.95}
-									height={300}
+									// width={width * 0.95}
+									height={h}
 									src='./kisser2/10.png'
 									preview={false}
 								/>

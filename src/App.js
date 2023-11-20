@@ -27,7 +27,7 @@ const contentStyle: React.CSSProperties = {
 	minHeight: 300,
 	lineHeight: '120px',
 	color: '#fff',
-	backgroundColor: '#108ee9',
+	backgroundColor: '#ff54e4',
 }
 
 const siderStyle: React.CSSProperties = {
@@ -46,6 +46,7 @@ const footerStyle: React.CSSProperties = {
 const twoColors = { '0%': '#108ee9', '100%': '#87d068' }
 
 function Game() {
+	const { innerWidth: width, innerHeight: height } = window
 	const location = useLocation()
 	const player = location.state.player
 	console.log(player)
@@ -120,10 +121,172 @@ function Game() {
 						<Col span={12}>P1: {p1}</Col>
 						<Col span={12}>P2: {p2}</Col>
 					</Row>
-					<Row>
+					<Row justify='space-between'>
 						{/* <Progress percent={value} status='active' strokeColor={twoColors} /> */}
-						<Col span={12}></Col>
-						<Col span={12}></Col>
+						<div>
+							{/* <Col span={12}> */}
+							{p1 <= 0 ? (
+								<Image
+									width={width * 0.05}
+									height={300}
+									src='./kisser1/1.png'
+									preview={false}
+								/>
+							) : p1 == 1 ? (
+								<Image
+									width={width * 0.1}
+									height={300}
+									src='./kisser1/1.png'
+									preview={false}
+								/>
+							) : p1 == 2 ? (
+								<Image
+									width={width * 0.2}
+									height={300}
+									src='./kisser1/2.png'
+									preview={false}
+								/>
+							) : p1 == 3 ? (
+								<Image
+									width={width * 0.3}
+									height={300}
+									src='./kisser1/3.png'
+									preview={false}
+								/>
+							) : p1 == 4 ? (
+								<Image
+									width={width * 0.4}
+									height={300}
+									src='./kisser1/4.png'
+									preview={false}
+								/>
+							) : p1 == 5 ? (
+								<Image
+									width={width * 0.5}
+									height={300}
+									src='./kisser1/5.png'
+									preview={false}
+								/>
+							) : p1 == 6 ? (
+								<Image
+									width={width * 0.6}
+									height={300}
+									src='./kisser1/6.png'
+									preview={false}
+								/>
+							) : p1 == 7 ? (
+								<Image
+									width={width * 0.7}
+									height={300}
+									src='./kisser1/7.png'
+									preview={false}
+								/>
+							) : p1 == 8 ? (
+								<Image
+									width={width * 0.8}
+									height={300}
+									src='./kisser1/8.png'
+									preview={false}
+								/>
+							) : p1 == 9 ? (
+								<Image
+									width={width * 0.9}
+									height={300}
+									src='./kisser1/9.png'
+									preview={false}
+								/>
+							) : (
+								<Image
+									width={width * 0.95}
+									height={300}
+									src='./kisser1/10.png'
+									preview={false}
+								/>
+							)}
+						</div>
+						{/* </Col> */}
+						{/* <Col span={12}> */}
+						<div>
+							{p2 <= 0 ? (
+								<Image
+									width={width * 0.05}
+									height={300}
+									src='./kisser2/1.png'
+									preview={false}
+								/>
+							) : p2 == 1 ? (
+								<Image
+									width={width * 0.1}
+									height={300}
+									src='./kisser2/1.png'
+									preview={false}
+								/>
+							) : p2 == 2 ? (
+								<Image
+									width={width * 0.2}
+									height={300}
+									src='./kisser2/2.png'
+									preview={false}
+								/>
+							) : p2 == 3 ? (
+								<Image
+									width={width * 0.3}
+									height={300}
+									src='./kisser2/3.png'
+									preview={false}
+								/>
+							) : p2 == 4 ? (
+								<Image
+									width={width * 0.4}
+									height={300}
+									src='./kisser2/4.png'
+									preview={false}
+								/>
+							) : p2 == 5 ? (
+								<Image
+									width={width * 0.5}
+									height={300}
+									src='./kisser2/5.png'
+									preview={false}
+								/>
+							) : p2 == 6 ? (
+								<Image
+									width={width * 0.6}
+									height={300}
+									src='./kisser2/6.png'
+									preview={false}
+								/>
+							) : p2 == 7 ? (
+								<Image
+									width={width * 0.7}
+									height={300}
+									src='./kisser2/7.png'
+									preview={false}
+								/>
+							) : p2 == 8 ? (
+								<Image
+									width={width * 0.8}
+									height={300}
+									src='./kisser2/8.png'
+									preview={false}
+								/>
+							) : p2 == 9 ? (
+								<Image
+									width={width * 0.9}
+									height={300}
+									src='./kisser2/9.png'
+									preview={false}
+								/>
+							) : (
+								<Image
+									width={width * 0.95}
+									height={300}
+									src='./kisser2/10.png'
+									preview={false}
+								/>
+							)}
+						</div>
+						{/* </Col> */}
 					</Row>
 					<Row>
 						<Col span={24}>

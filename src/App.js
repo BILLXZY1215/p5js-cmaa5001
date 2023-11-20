@@ -27,7 +27,7 @@ const contentStyle: React.CSSProperties = {
 	minHeight: 300,
 	lineHeight: '120px',
 	color: '#fff',
-	backgroundColor: '#108ee9',
+	backgroundColor: '#FF54E4',
 }
 
 const siderStyle: React.CSSProperties = {
@@ -137,6 +137,7 @@ function Game() {
 						</Col>
 					</Row>
 					<Row>{p1Win ? 'P1 Win!' : p2Win ? 'P2 Win!' : ''}</Row>
+					
 				</Content>
 				<Footer style={footerStyle}>Team14</Footer>
 			</Layout>
@@ -166,27 +167,13 @@ function Home() {
 				) : (
 					<Content style={contentStyle}>
 						<Row>
-							<Col span={12}>
-								<Button
-									type={player == 1 ? 'primary' : 'default'}
-									onClick={() => {
-										setPlayer(1)
-									}}
-								>
-									P1
-								</Button>
-							</Col>
-							<Col span={12}>
-								<Button
-									type={player == 2 ? 'primary' : 'default'}
-									onClick={() => {
-										setPlayer(2)
-									}}
-								>
-									P2
-								</Button>
-							</Col>
-						</Row>
+						<Col span={12} style={{ height: '50vh', marginTop:'5vh'}}>
+								<Image width={'50%'} onClick={() => {setPlayer(1)}} src="k1.png" preview={false}/>
+						</Col>
+						<Col span={12} style={{ height: '50vh'}}>
+						<Image  width={'50%'} onClick={() => {setPlayer(2)}}  src="k2.png" preview={false}/>
+						</Col>
+					</Row>
 						<Row>
 							<Col span={24}>
 								<Button

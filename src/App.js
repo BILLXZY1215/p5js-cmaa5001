@@ -145,6 +145,7 @@ function Game() {
 }
 
 function Home() {
+	const { innerWidth: width, innerHeight: height } = window
 	const navigate = useNavigate()
 	const [player, setPlayer] = useState(1)
 	const [isCover, setIsCover] = useState(1)
@@ -161,7 +162,7 @@ function Home() {
 		<Space direction='vertical' style={{ width: '100%' }} size={[0, 48]}>
 			<Layout>
 				{isCover ? (
-					<Image width={2000} src='./cover.png' preview={false} />
+					<Image width={width} src='./cover.png' preview={false} />
 				) : (
 					<Content style={contentStyle}>
 						<Row>

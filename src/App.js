@@ -2,7 +2,7 @@ import logo from './logo.svg'
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Layout, Space, Col, Row, Button, Progress } from 'antd'
+import { Layout, Space, Col, Row, Button, Progress, Image } from 'antd'
 import {
 	BrowserRouter,
 	Routes,
@@ -147,51 +147,59 @@ function Game() {
 function Home() {
 	const navigate = useNavigate()
 	const [player, setPlayer] = useState(1)
+	const [isCover, setIsCover] = useState(1)
 	useEffect(() => {
 		async function clearValue() {
 			await axios.post('/value/clear').catch((e) => console.log(e))
 		}
 		clearValue()
+		setTimeout(() => {
+			setIsCover(0)
+		}, 2000)
 	}, [])
 	return (
 		<Space direction='vertical' style={{ width: '100%' }} size={[0, 48]}>
 			<Layout>
-				<Content style={contentStyle}>
-					<Row>
-						<Col span={12}>
-							<Button
-								type={player == 1 ? 'primary' : 'default'}
-								onClick={() => {
-									setPlayer(1)
-								}}
-							>
-								P1
-							</Button>
-						</Col>
-						<Col span={12}>
-							<Button
-								type={player == 2 ? 'primary' : 'default'}
-								onClick={() => {
-									setPlayer(2)
-								}}
-							>
-								P2
-							</Button>
-						</Col>
-					</Row>
-					<Row>
-						<Col span={24}>
-							<Button
-								type='primary'
-								onClick={() => {
-									navigate('/game', { state: { player: player } })
-								}}
-							>
-								Play!
-							</Button>
-						</Col>
-					</Row>
-				</Content>
+				{isCover ? (
+					<Image width={2000} src='./cover.png' preview={false} />
+				) : (
+					<Content style={contentStyle}>
+						<Row>
+							<Col span={12}>
+								<Button
+									type={player == 1 ? 'primary' : 'default'}
+									onClick={() => {
+										setPlayer(1)
+									}}
+								>
+									P1
+								</Button>
+							</Col>
+							<Col span={12}>
+								<Button
+									type={player == 2 ? 'primary' : 'default'}
+									onClick={() => {
+										setPlayer(2)
+									}}
+								>
+									P2
+								</Button>
+							</Col>
+						</Row>
+						<Row>
+							<Col span={24}>
+								<Button
+									type='primary'
+									onClick={() => {
+										navigate('/game', { state: { player: player } })
+									}}
+								>
+									Play!
+								</Button>
+							</Col>
+						</Row>
+					</Content>
+				)}
 			</Layout>
 		</Space>
 	)

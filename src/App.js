@@ -338,7 +338,7 @@ function Game() {
 					</Row>
 					<Row>{p1Win ? 'P1 Win!' : p2Win ? 'P2 Win!' : ''}</Row>
 				</Content>
-				<Footer style={footerStyle}>Team14</Footer>
+				<Footer style={footerStyle}>Team16</Footer>
 			</Layout>
 		</Space>
 	)
